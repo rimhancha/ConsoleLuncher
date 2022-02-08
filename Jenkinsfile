@@ -4,18 +4,18 @@ stages {
 stage('Checkout Codebase') { 
 steps { 
 cleanWs() 
-checkout scm:[$class:'GitSCM',userRemoteConfigs:[[credentialsId: 'IDKEYRIM',url: 'git@github.com:rimhancha/ConsoleLuncher.git']]] } 
+checkout scm:[$class:"GitSCM",userRemoteConfigs:[[credentialsId: "IDKEYRIM",url: "git@github.com:rimhancha/ConsoleLuncher.git"]]] } 
 } 
 stage('Build'){ 
 steps{ 
-bat'mkdir lib' 
-bat'cd lib' 
-bat'curl.exe -o "lib/junit-platform-console-standalone-1.8.1.jar""https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.1/junit-platform-console-standalone-1.8.1.jar"' 
-bat'javac -d target -cp target;"lib/junit-platform-console-standalone-1.8.1.jar" src/test/java/Test/FirstUnitTest.java' 
+bat"mkdir lib" 
+bat"cd lib" 
+bat"curl.exe -o "lib/junit-platform-console-standalone-1.8.1.jar""https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.1/junit-platform-console-standalone-1.8.1.jar""
+bat"javac -d target -cp target;"lib/junit-platform-console-standalone-1.8.1.jar" src/test/java/Test/FirstUnitTest.java"
 } 
 } 
 stage('Test'){ 
 steps{ 
-bat'java -jar "lib/junit-platform-console-standalone-1.8.1.jar" -cp target -c Test.FirstUnitTest' 
+bat"java -jar "lib/junit-platform-console-standalone-1.8.1.jar" -cp target -c Test.FirstUnitTest"
 } } 
 } }
